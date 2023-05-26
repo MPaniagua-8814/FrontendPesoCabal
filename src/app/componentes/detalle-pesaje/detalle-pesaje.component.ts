@@ -173,7 +173,7 @@ export class DetallePesajeComponent implements OnInit {
     doc.text(texto, 20 , 20);
     // doc.lineHeightFactor(1.5);
     // doc.set
-    doc.save(`Prueba.pdf`);
+    doc.save(`Boleta Parcialidad:${dato.idParcialidad}.pdf`);
 }
 
 
