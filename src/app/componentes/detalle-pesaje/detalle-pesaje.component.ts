@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import jspdf from 'jspdf'
+import html2canvas from 'html2canvas'
 
 @Component({
   selector: 'app-detalle-pesaje',
@@ -149,5 +151,30 @@ export class DetallePesajeComponent implements OnInit {
     });
     
   }
+
+
+  generarBoleta(dato:any){
+    const doc = new jspdf();
+
+
+    let fechaBoleta = "\t\t\t\t\t\t\t\tFecha boleta: " + this.formatoFecha(dato.fechaBoleta) +"\n"
+    let usuarioBoleta = "\t\t\t\t\t\t\t\tUsuario: " + dato.usuarioModifica+"\n"
+    let cuenta = "Cuenta:     \t\t\t" + dato.idCuenta.idCuenta+"\n"
+    let pesaje = "ID Pesaje: \t\t\t" + dato.idCuenta.idPesaje+"\n"
+    let parcialidad = "ID de la Parcialidad:  \t" + dato.idParcialidad+"\n"
+    let placa = "Placa del transporte: \t" + dato.idTransporte+"\n"
+    let transportisa = "CUI Transportista:  \t  " + dato.idTransportista+"\n"
+    let tipoMedida = "Tipo Medida:\t\t    " + dato.tipoMedida+"\n"
+    let pesoObtenido = "Peso Obtenido: \t\t" + dato.pesoObtenido+" " + dato.medidaPeso.nombre+"\n"
+    let fecha = "Fecha pesaje:  \t\t" + this.formatoFecha(dato.fechaPeso)+"\n"
+
+    let texto = "\n \n" + fechaBoleta + usuarioBoleta + "\n\n" + cuenta + pesaje + parcialidad + placa + transportisa + tipoMedida + pesoObtenido + fecha
+
+    doc.text(texto, 20 , 20);
+    // doc.lineHeightFactor(1.5);
+    // doc.set
+    doc.save(`Prueba.pdf`);
+}
+
 
 }

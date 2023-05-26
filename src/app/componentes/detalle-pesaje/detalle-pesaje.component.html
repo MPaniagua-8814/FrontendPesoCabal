@@ -36,9 +36,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <form>
+        <form  id="datosParcialidades">
 
-                <table class="table table-striped table-hover">
+                <table  class="table table-striped table-hover">
                   <thead>
                     <tr class="table-secondary">
                       <th class="text-center" style="font-size:1.2em; padding:3%;" colspan="8">Parcialidades</th>
@@ -64,7 +64,7 @@
                         No existen registros.
                       </td>
                     </tr>
-                    <tr *ngFor="let dato of parcialidades">
+                    <tr  *ngFor="let dato of parcialidades">
                       <td>{{dato.idParcialidad}}</td>
                       <td>{{dato.idTransporte}}</td>
                       <td>{{dato.idTransportista}}</td>
@@ -76,7 +76,7 @@
                         <div class="row">
                         <div class="col-sm">
                             <button  title="Actualizar peso" (click)="settearDatos(dato.idParcialidad, dato.medidaPeso.codigo)" class="btn btn-info" data-toggle="modal" data-target="#modalingresarPeso"><i class="fa fa-balance-scale"></i></button>
-                            <button  *ngIf="dato.boleta" title="Generar Boleta" class="btn btn-warning"><i class="fa fa-file"></i></button>
+                            <button  (click)="generarBoleta(dato)" *ngIf="dato.boleta" title="Generar Boleta" class="btn btn-warning"><i class="fa fa-file"></i></button>
                             <!-- <button  *ngIf="!dato.boleta" title="Generar Boleta" class="btn btn-warning"><i class="fa fa-file"></i></button> -->
                         </div>
                       </div>
